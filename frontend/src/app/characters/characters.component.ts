@@ -5,10 +5,7 @@ import { Character } from '../data-interfaces/character';
 
 @Component({
   selector: 'app-characters',
-  template: `
-    <h1>Characters</h1>
-    <button (click)="showCharacters()">Check</button>
-  `,
+  templateUrl: './characters.component.html',
   styles: ['']
 })
 export class CharactersComponent implements OnInit {
@@ -16,11 +13,6 @@ export class CharactersComponent implements OnInit {
   sideCharacters: Character[] = [];
 
   constructor(private dataService: DataService) {}
-
-  showCharacters() {
-    console.log(this.mainCharacters);
-    console.log(this.sideCharacters);
-  }
 
   updateMainCharacters(newCharacters: Character[]) {
     this.mainCharacters = newCharacters;

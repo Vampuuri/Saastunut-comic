@@ -1,1 +1,30 @@
-<p>characters works!</p>
+<h1>Hahmot</h1>
+
+<div *ngFor="let character of mainCharacters">
+    <p><u>Nimi:</u> {{character.name}}
+    <br/><u>Sukupuoli:</u> {{character.gender}}
+    <br/><u>Ikä:</u> {{character.age}} vuotta
+    <br/><u>Laji:</u> {{character.species}}
+    <br/><u>Koko:</u> {{character.size}}</p>
+
+    <p><u>Luonne:</u> {{character.nature}}</p>
+
+    <p><u>Ulkonäkö:</u> {{character.appearance}}</p>
+
+    <p><u>Menneisyys:</u> {{character.history}}</p>
+
+    <p><u>Alueelle jäämisen syy:</u> {{character.reasonToStay}}</p>
+
+    <p><u>Hahmon omistaa:</u> {{character.artist}}</p>
+
+    <hr />
+</div>
+
+<h2>Sivuhahmot</h2>
+
+<div *ngFor="let character of sideCharacters">
+    <p>{{character.name}}
+    <br/>{{character.species}}, {{character.gender}}
+    <br/>Ensiesiintyminen: sivu {{character.firstAppearance}}
+    <br/>Hahmon suunnitellut: {{character.artist}}</p>
+</div>
