@@ -331,6 +331,28 @@ app.get('/pages', function(req,res) {
     res.send(db.get('pages'));
 });
 
+app.get('/pages/:id([0-9]+)', function(req,res) {
+    var pagesArray = db.get('pages');
+    var id = parseInt(req.params.id);
+    var found = false;
+
+    for (var page of pagesArray) {
+        if (page.id === id) {
+            found = true;
+            res.send(page);
+            break;
+        }
+    }
+
+    if (!found) {
+        res.status(404);
+        var desc = 'The resource with id = ' + id + ' did not exist';
+        res.send({code: 404,
+            message: 'Resource not found.',
+            description: desc});
+    }
+});
+
 app.get('/artists', function(req,res) {
     res.send(db.get('artists'));
 });
