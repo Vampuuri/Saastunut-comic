@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-frontpage',
-  template: `
-    <h1>Frontpage</h1>
-  `,
+  templateUrl: './frontpage.component.html',
   styles: []
 })
 export class FrontpageComponent implements OnInit {
