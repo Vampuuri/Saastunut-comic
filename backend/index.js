@@ -330,6 +330,32 @@ app.get('/characters', function(req,res) {
     res.send(db.get('characters'));
 });
 
+app.get('/characters/main', function(req,res) {
+    var mainCharacters = [];
+    var allCharacters = db.get('characters');
+
+    for (var character of allCharacters) {
+        if (character.mainCharacter) {
+            mainCharacters.push(character);
+        }
+    }
+
+    res.send(mainCharacters);
+});
+
+app.get('/characters/side', function(req,res) {
+    var sideCharacters = [];
+    var allCharacters = db.get('characters');
+
+    for (var character of allCharacters) {
+        if (!character.mainCharacter) {
+            sideCharacters.push(character);
+        }
+    }
+
+    res.send(sideCharacters);
+});
+
 app.get('/pages', function(req,res) {
     res.send(db.get('pages'));
 });
