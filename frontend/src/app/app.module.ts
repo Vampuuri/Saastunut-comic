@@ -6,6 +6,8 @@ import { FrontpageComponent } from './frontpage/frontpage.component';
 import { InfoComponent } from './info/info.component';
 import { CharactersComponent } from './characters/characters.component';
 
+import { HomepageRoutingModule } from './homepage-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +16,8 @@ import { CharactersComponent } from './characters/characters.component';
     CharactersComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HomepageRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
