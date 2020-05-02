@@ -1,4 +1,4 @@
-export default interface turn {
+export default interface Turn {
     id: number;
     artist: string;
     round: number;
