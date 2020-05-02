@@ -321,7 +321,10 @@ db.on('open', function() {
 // ---------------------------------SERVER------------------------------------
 
 var express = require('express');
+var cors = require('cors');
 var app = express();
+
+app.use(cors());
 
 app.get('/characters', function(req,res) {
     res.send(db.get('characters'));
