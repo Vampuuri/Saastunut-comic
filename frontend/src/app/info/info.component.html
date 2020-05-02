@@ -1,3 +1,77 @@
 <h1>Info</h1>
 
-<p>gdshfdsfhkdfknja</p>
+<div>
+    <h2>Tietoa</h2>
+      
+      <h1>Lajit</h1>
+      
+      <p>Kasvokkaat ovat eläimiä, joilla on ihmisen kasvot. He voivat olla lajiltaan keskikokoisia ja suuria maanisäkkäitä, pienimmillään suuren ketun ja suurimmillaan pienen karhun kokoisia. Yleisimmät kasvokaslajit ovat koira-, kissa- ja peuraeläimiä, mutta myös muita lajeja esiintyy. Eläinosa kasvokkaissa on tavallisesti luonnollisen värinen ja muotoinen. Poikkeuksena ovat kuitenkin eläimet, joilla on käpälät tai tassut. Näiden etujalkojen sisimmät varpaat saattavat olla erillään muista varpaista, jolloin sitä voi käyttää peukalon tavoin. Kasvokkaat eivät kuitenkaan kykene samankaltaiseen tarkkuusotteeseen kuin ihmiset saati yhtä pikkutarkkoihin töihin kuin nuo. Asioiden kantamiseen ja yksinkertaisten työkalujen, kuten kivien ja keppien käyttämiseen kasvokkaat kuitenkin pystyvät. Kasvokkaiden kasvoista voi löytyä pieniä eläimellisiä piirteitä, kuten pystypupilliset silmät ja pitkät kulmahampaat. Kasvokkaat eivät päästä elämellisiä ääniä, he eivät siis nau'u, ulvo, hauku, kehrää tai mitään muuta sellaista. Solan kasvokkaat lisääntyvät vain omanlajisensa kanssa. Jälkeläisiä syntyy tavallisesti vain yksi, joskus harvoin kaksosiakin ilmenee. He ikääntyvät samaa tahtia kuin ihmiset, vaikka he eivät usein elä paljoa yli kolmenkymppisiksi johtuen pääasiassa sairauksista ja tapaturmista. Heidät luetaan aikuisiksi heti sukukypsän iän saavutettuaan (n. 13 vuotiaina).
+        <br>Kasvokkaat elävät pienissä metsästäjä-keräilijäheimoissa. Solan alue on suuri, joten heimoja on ennen luonnonmullistuksia ollut useita. Kasvokkaat ovat kaikkiruokaisia, susikasvokas syö mielellään marjoja ja peurakasvokkaallekin maistuu liha, jos sitä vain on tarjolla. Kasvokkailla on yhteinen, kehittynyt kieli. He elävät tekemällä yhteistyötä ja koska menneistä suuremman luokan kriiseistä ollaan selvitty heimojen yhteistyöllä, eivät edes heimot vihoittele keskenään kovinkaan usein. Kasvokkaiden persoonallisuus vaihtelee tietysti laidasta laitaan ja sooloilevia hurjapäitä sekä riidanhaastajia löytyy aina.
+        <br>Koruja tai vaatekappaleita kasvokkaat eivät käytä, pääasiassa koska heillä ei ole sorminäppäryyttä sellaisten tekemiseen. Sen sijaan monilta löytyy punaisia kasvomaalauksia. Maali tehdään yksinkertaisesti punasavesta ja linnun munista (sidosaineena voidaan käyttää myös verta). Kasvokas ei kuitenkaan pysty tekemään kasvomaalauksia itselleen, koska nivelet taipuvat pääosin eläimellisesti eikä tarkkaa työtä omiin kasvoihin ole helppo tehdä. Maali tietysti kuluu pois ajan myötä ja maalaus täytyy uusia vähintään pari kertaa viikossa.</p>
+      
+      <p>Kasvokkaiden lisäksi löytyy tavallisia eläimiä. He eivät kuitenkaan pysty kommunikoimaan eläinten kanssa ja näkevät nämä ravintona, kilpailijoina tai uhkana. Ihmisiä ei ole ollenkaan, tai jos on he elävät alkukantaisessa keräilijä-metsästäjäkulttuurissa kaukana solasta eivätkä ole tekemisissä kasvokkaiden kanssa.</p>
+      
+      <h1>Ympäristö</h1>
+      
+      <p>Kahden vuoriston välissä on leveä sola, josta löytyy kaikkea havu- ja sekametsistä tasankoihin, kallioihin ja kivisiin vuorenseinämiin. Vuoret solan kummallakin puolella ovat tuliperäisiä, mutta suoranaiset tulivuoret ovat uinuneet jo vuosisatoja. Sen sijaan vuorten rinteiltä saattaa löytää kuumia lähteitä ja korkeammalta jopa geysireitä. Vuorille satanut vesi valuu solaan ensin puroina ja sitten jokina. Kasvillisuudeltaan, lajistoltaan ja ilmastoltaan alue muistuttaa läheisimmin telluksen taiga-havumetsäaluetta. Solasta pääsee pois vain kiipeämällä vuoriston yli tai kulkemalla satoja kilometrejä solaa pitkin ulos.
+        <br>Nopeat muutokset ovat kuitenkin ravistelleet ympäristöä. Ilmaston ääri-ilmiöt, kuten ukkosmyrskyt ovat yleistyneet, kesistä on tullut kuivia ja kuumia ja talvet ovat pitkiä ja pistävän kylmiä. Veteen on ilmestynyt vuorten rinteiltä outoja aineita, jotka tekevät siitä helposti juomakelvotonta. Eläinten keskuudessa on riehunut sairauksia, joista osa on tarttunut jopa kasvokkaisiin. Saaliseläimet ovat alkaneet kadota alueelta. Kasvit eivät ole tottunut tällaisiin oloihin, joten marja- ja hedelmäsadot ovat jääneet hyvin pieniksi. Suurin osa kasvokasheimoista ovat lähteneet vaeltamaan pois ennen niin hyvältä elinalueelta, saaliseläinten ja ravinnon perässä.</p>
+      
+      <button (click)="toggleRules()">{{rulesVisible ? "Piilota säännöt ja ohjeet" : "Näytä säännöt ja ohjeet"}}</button>
+
+      <span *ngIf="rulesVisible">
+        <h2>Ohjeistus</h2>
+      
+        <h1>Säännöt</h1>
+        
+        <p>- Piirtoaikaa on kaksi viikkoa, lisäaikaa saa pyytäessä. Jos pyydät lisäaikaa, et saa enää hypätä vuoroasi yli.
+          <br>- Jos tiedät, ettet ehdi tehdä sarjakuvasivua annetussa ajassa, ilmoita siitä mahdollisimman nopeasti, jotta vuoro siirretään seuraavalle. Jos sama piirtäjä hyppää vuoronsa monta kertaa yli, asiasta tulee sanomista.
+          <br>- Jos tiedät, ettet ehdi tehdä sivua, mutta et kuitenkaan halua tulla skipatuksi, voit pyytää vuoroasi siirrettävän muutamalla vuorolla eteenpäin/vuorolistan loppuun.</p>
+        
+        <p>- Sivuja saa tehdä niin monta kuin haluaa, mutta täytyy tehdä vähintään yksi.
+          <br>- Sarjakuvan tulisi olla värillistä, varjostukset ovat toivottuja mutta eivät pakollisia.
+          <br>- Yritetään pitää sivut mahdollisimman samankokoisina. Koon tulisi olla jotain välillä 500x750 ja 600x850 pikseliä. Tämän suhteen ei kuitenkaan olla tiukkapipoja.
+          <br>- Käytetään teksteissä selvää käsialaa tai kirjoitetaan koneella.
+          <br>- Piirtäjien kommentit ja huomautukset sivujen nurkista tulee jättää kokonaan pois.</p>
+        
+        <p>- Toisen piirtäjän hahmoa sai vahingoittaa, mutta tappaminen on kielletty. Myös pysyviä muutoksia tuovat vammat (esim. korvan repiminen) saa tehdä vain kyseisen hahmon luojan luvalla.
+          <br>- Et saa tuoda toisten hahmoja sarjakuvaan, ellei asiasta ole toisin sovittu.
+          <br>- Voit kertoa itse tai Vampuuri välityksellä muille piirtäjille, kuinka haluat tuoda oman hahmosi mukaan, jolloin muut piirtäjät voivat alustaa hahmosi ilmestymistä.
+          <br>- Sarjakuvan on tarkoitus edetä improamalla, joten todella harvat tapahtumat suunnitellaan piirtäjien kesken. Vain hahmojen mukaan tuomiset ja juonen solmukohdat suunnitellaan etukäteen.</p>
+        
+        <h1>Ohjeet</h1>
+        
+        <p>- Älä tee hahmostasi ulkonäöltään tai persoonallisuudeltaan/motiiveiltaan liian monimutkaista. Jokaisen piirtäjän pitää kuitenkin pystyä ymmärtämään ainakin jollain tasolla hahmosi ajatusmaailmaa.
+          <br>- Älä kiirehdi hahmosi tuomisessa sarjakuvaan. Olisihan se vaikeaa, jos kaikki hahmot ilmestyisivät heti ensimmäisellä kierroksella tutustumaan toisiinsa.
+          <br>- Impro on juoneltaan varsin vakava, mutta se ei tarkoita, etteikö huumoria saisi käyttää hyvän maun ja järkevyyden rajoissa. Jatkuvaa pelleilyä ei kuitenkaan jakseta katsella.</p>
+        
+        <h1>Liittyminen</h1>
+        
+        <p><i>Uusia piirtäjiä ei tällä hetkellä etsitä.</i></p>
+        
+        <p>- Täytä alla oleva lomake ja lähetä se foorumille.
+          <br>- Kyseessä <B><U>ei ole</U></B> nopeuskilpailu. Kaikki vastaanotetut hahmot ovat tasavertaisia valinnan edessä huolimatta milloin hakemus on lähetetty.
+          <br>- Valinnassa katsotaan pääasiassa hahmoon, mutta myös vähän piirtotaitoihin. Olisi hyvä, jos hahmolomakkeen lähettäessäsi antaisit linkin myös deviantArttiisi tai taideblogiisi.
+          <br>- Hahmokuvan täytyy olla itse piirretty, ei kuvapohjista tehty tai jonkun muun tekemä kuva hahmosta.
+          <br>- Voit yrittää hakea mukaan piirtämään vain<I> yhdellä</I> hahmolla. Tee se siis huolellisesti.</p>
+        
+        <p>Suluissa olevat kohdat ovat vapaaehtoisia.</p> 
+        
+        <p><B>Nimi:
+          <br>Sukupuoli:
+          <br>Ikä:
+          <br>Laji:</B> Lajia valitessa käyttäkää maalaisjärkeä. Hahmosi pitäisi lähtökohtaisesti pystyä selviämään solan ilmastossa. Jos epäilet, onko lajivalintasi järkevä, voit tiedustella asiaa vieraskirjassa.
+          <br><B>Koko:</B> Esimerkiksi säkäkorkeus tai viittaus lajin kokoon. Tämä helpottaa piirtäjien hahmojen toisiinsa suhteuttamista.</p>
+        
+        <p><B>Luonne:</B></p>
+        
+        <p><B>Ulkonäkö:</B> Muista antaa kuvaus myös hahmosi kasvonpiirteistä!</p>
+        
+        <p>(<B>Menneisyys:</B> Ei pakollinen, mutta toivottava)</p>
+        
+        <p>(<B>Alueelle jäämisen syy:</B> Jos hahmosi syy jäädä alueelle jää muissa kohdissa epäselväksi tai haluat selventää asiaa muuten, tämä kohta on viisasta täyttää.)</p>
+        
+        <p>Jos hakemuksessa on jotain pahasti pielessä, ylläpitäjä kyllä mainitsee siitä, jotta ehdit halutessasi korjata asian ennen piirtäjähakuajan loppumista.</p>
+        
+        <p><center>Kaikki selvä? Voit lähettää hakemuksen <a href="http://saastunut.proboards.com/thread/13/piirt-haku-hakuaika-ttyy" target="_blank">foorumille</a>!</center></p>
+      </span>
+</div>
