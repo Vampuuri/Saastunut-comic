@@ -9,13 +9,15 @@ import { CharactersComponent } from './characters/characters.component';
 
 import { HomepageRoutingModule } from './homepage-routing.module';
 import { DataService } from './data.service';
+import { ActiveTurnComponent } from './active-turn/active-turn.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FrontpageComponent,
     InfoComponent,
-    CharactersComponent
+    CharactersComponent,
+    ActiveTurnComponent
   ],
   imports: [
     BrowserModule,
