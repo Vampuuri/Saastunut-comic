@@ -361,6 +361,22 @@ app.get('/turns', function(req,res) {
     res.send(db.get('turns'));
 });
 
+app.get('/turns/active', function(req,res) {
+    var turnsArray = db.get('turns');
+    var turn = turnsArray[turnsArray.length - 1];
+
+    if (turn.active) {
+        res.send(turn);
+    } else {
+        res.status(404)
+        res.send({
+            code: 404,
+            message: 'Active turn not found',
+            description: 'Active turn was not found'
+        })
+    }
+});
+
 var server = app.listen(3000, function() {
     console.log('Server listening...')
 });
