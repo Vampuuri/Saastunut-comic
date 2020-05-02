@@ -4,7 +4,7 @@ export enum Status {
     resigned = 'Resigned'
 }
 
-export default interface Artist {
+export interface Artist {
     name: string;            // also id/key
     status: Status;
     contactInfo: string[];
