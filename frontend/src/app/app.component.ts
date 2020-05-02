@@ -4,16 +4,16 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <h1>Hello</h1>
-    <nav>
-      <a routerLink="/">Home</a>
-      <a routerLink="/info">Info</a>
-      <a routerLink="/characters">Characters</a>
-    </nav>
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/info">Info</a></li>
+      <li><a routerLink="/characters">Characters</a></li>
+    </ul>
     <div>
       <router-outlet></router-outlet>
     </div>
   `,
-  styles: []
+  styleUrls: ['./app.component.html']
 })
 export class AppComponent {
   title = '';
