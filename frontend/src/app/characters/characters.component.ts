@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-characters',
-  templateUrl: `
+  template: `
     <h1>Characters</h1>
   `,
   styles: ['']
