@@ -316,8 +316,29 @@ db.on('open', function() {
     db.put('artists', artists);
     db.put('turns', turns);
     db.put('characters', characters);
-
-    console.log(db.get('turns'));
 })
 
 // ---------------------------------SERVER------------------------------------
+
+var express = require('express');
+var app = express();
+
+app.get('/characters', function(req,res) {
+    res.send(db.get('characters'));
+});
+
+app.get('/pages', function(req,res) {
+    res.send(db.get('pages'));
+});
+
+app.get('/artists', function(req,res) {
+    res.send(db.get('artists'));
+});
+
+app.get('/turns', function(req,res) {
+    res.send(db.get('turns'));
+});
+
+var server = app.listen(3000, function() {
+    console.log('Server listening...')
+});
