@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { DataService } from './data.service';
-
 @Component({
   selector: 'app-root',
   template: `
@@ -21,7 +19,6 @@ import { DataService } from './data.service';
 export class AppComponent {
   title = '';
 
-  constructor(private dataService: DataService) {
-    dataService.getPages();
+  constructor() {
   }
 }
