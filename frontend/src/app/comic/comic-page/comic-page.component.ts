@@ -11,17 +11,20 @@ import { Page } from '../../data-interfaces/page';
 })
 export class ComicPageComponent implements OnInit {
   pageNumber: number;
+  loading: boolean = true;
+  page = {content: ''}
 
   constructor(private activatedRoute: ActivatedRoute, private dataService: DataService) { }
 
   setPage(page: Page) {
-    console.log(page);
+    this.page = page;
   }
 
   setPageNumber(newNumberString: string) {
     if (newNumberString.match(/^[0-9]+$/) != null) {
       this.pageNumber = parseInt(newNumberString);
       this.dataService.getPageById(this.pageNumber, (res) => {this.setPage(res)}, () => {});
+      this.loading = false;
     } else {
       this.pageNumber = NaN;
     }
