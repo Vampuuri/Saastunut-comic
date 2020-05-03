@@ -10,6 +10,7 @@ import { CharactersComponent } from './characters/characters.component';
 import { HomepageRoutingModule } from './homepage-routing.module';
 import { DataService } from './data.service';
 import { ActiveTurnComponent } from './active-turn/active-turn.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ActiveTurnComponent } from './active-turn/active-turn.component';
     FrontpageComponent,
     InfoComponent,
     CharactersComponent,
-    ActiveTurnComponent
+    ActiveTurnComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
