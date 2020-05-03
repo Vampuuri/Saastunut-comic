@@ -14,8 +14,8 @@ export class DataService {
     this.http.get<Page[]>('http://localhost:3000/pages').subscribe(res => {onSuccess(res)});
   }
 
-  getPageById(id: number, onSuccess: (res: any) => any, onError: (res: any) => any): void {
-    this.http.get<Page>('http://localhost:3000/pages/'+id).subscribe(res => {onSuccess(res)});
+  getPageById(id: number, onSuccess: (res: any) => any, onError: () => any): void {
+    this.http.get<Page>('http://localhost:3000/pages/'+id).subscribe(res => {onSuccess(res)}, () => onError());
   }
 
   getMainCharacters(onSuccess: (res: any) => any, onError: (res: any) => any): void {

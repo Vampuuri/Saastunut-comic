@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { DataService } from '../../data.service';
 import { Page } from '../../data-interfaces/page';
@@ -12,19 +12,37 @@ import { Page } from '../../data-interfaces/page';
 export class ComicPageComponent implements OnInit {
   pageNumber: number;
   loading: boolean = true;
-  page = {content: ''}
+  lastPage: boolean = false;
+  page = {content: '', id: 0, artist: '', date: new Date()}
 
-  constructor(private activatedRoute: ActivatedRoute, private dataService: DataService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private dataService: DataService) { }
 
   setPage(page: Page) {
     this.page = page;
+    this.loading = false;
+  }
+
+  onLastPage() {
+    this.lastPage = true;
+  }
+
+  previousPage() {
+    if (this.lastPage) {
+      this.lastPage = false;
+      this.router.navigateByUrl(`/comic/${this.page.id}`);
+    } else {
+      this.router.navigateByUrl(`/comic/${this.page.id - 1}`);
+    }
+  }
+
+  nextPage() {
+    this.router.navigateByUrl(`/comic/${this.page.id + 1}`);
   }
 
   setPageNumber(newNumberString: string) {
     if (newNumberString.match(/^[0-9]+$/) != null) {
       this.pageNumber = parseInt(newNumberString);
-      this.dataService.getPageById(this.pageNumber, (res) => {this.setPage(res)}, () => {});
-      this.loading = false;
+      this.dataService.getPageById(this.pageNumber, (res) => {this.setPage(res)}, () => {this.onLastPage()});
     } else {
       this.pageNumber = NaN;
     }
