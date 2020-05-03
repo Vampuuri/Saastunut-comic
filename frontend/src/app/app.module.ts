@@ -13,6 +13,7 @@ import { ReadComicComponent } from './comic/read-comic/read-comic.component';
 
 import { HomepageRoutingModule } from './homepage-routing.module';
 import { MainRoutingModule } from './main/main-routing.module';
+import { ComicRoutingModule } from './comic/comic-routing.module';
 import { DataService } from './data.service';
 
 @NgModule({
@@ -30,7 +31,8 @@ import { DataService } from './data.service';
     BrowserModule,
     HttpClientModule,
     HomepageRoutingModule,
-    MainRoutingModule
+    MainRoutingModule,
+    ComicRoutingModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
