@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Character } from './data-interfaces/character';
+import { Page } from './data-interfaces/page';
 import { Turn } from './data-interfaces/turn';
 
 @Injectable()
@@ -9,8 +10,8 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getPages() {
-    this.http.get('http://localhost:3000/pages').subscribe(res => {console.log(res)});
+  getPages(onSuccess: (res: any) => any, onError: (res: any) => any): void {
+    this.http.get<Page[]>('http://localhost:3000/pages').subscribe(res => {onSuccess(res)});
   }
 
   getMainCharacters(onSuccess: (res: any) => any, onError: (res: any) => any): void {
