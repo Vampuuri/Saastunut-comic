@@ -206,7 +206,7 @@ var pages = [{
     round: 1
 },{
     id: 8,
-    content: 'http://i.imgur.com/DIE16Ty.png',
+    content: 'http://i.imgur.com/QPT0vpe.png',
     artist: 'Iarany',
     date: new Date(2013, 11, 12),
     round: 1
@@ -236,7 +236,7 @@ var pages = [{
     round: 2
 },{
     id: 13,
-    content: 'http://i.imgur.com/DIE16Ty.png',
+    content: 'http://i.imgur.com/uPylopZ.png',
     artist: 'Vampuuri',
     date: new Date(2014, 0, 26),
     round: 2
@@ -248,7 +248,7 @@ var pages = [{
     round: 2
 },{
     id: 15,
-    content: 'http://i.imgur.com/DIE16Ty.png',
+    content: 'http://i.imgur.com/SOcjGtc.png',
     artist: 'Ghaldun',
     date: new Date(2014, 1, 26),
     round: 2
