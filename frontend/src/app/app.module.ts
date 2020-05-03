@@ -15,7 +15,7 @@ import { HomepageRoutingModule } from './homepage-routing.module';
 import { MainRoutingModule } from './main/main-routing.module';
 import { ComicRoutingModule } from './comic/comic-routing.module';
 import { DataService } from './data.service';
-import { ReadComicNavigationComponent } from './read-comic-navigation/read-comic-navigation.component';
+import { ReadComicNavigationComponent } from './comic/read-comic-navigation/read-comic-navigation.component';
 
 @NgModule({
   declarations: [
