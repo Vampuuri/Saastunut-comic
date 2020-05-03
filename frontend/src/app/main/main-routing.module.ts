@@ -24,4 +24,4 @@ const mainRoutes: Routes = [
     ]
 })
 
-export class HomepageRoutingModule {};
+export class MainRoutingModule {};
