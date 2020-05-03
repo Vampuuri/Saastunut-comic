@@ -12,6 +12,7 @@ import { DataService } from './data.service';
 import { ActiveTurnComponent } from './active-turn/active-turn.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ComicPageComponent } from './comic-page/comic-page.component';
+import { ReadComicComponent } from './read-comic/read-comic.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ComicPageComponent } from './comic-page/comic-page.component';
     CharactersComponent,
     ActiveTurnComponent,
     HomePageComponent,
-    ComicPageComponent
+    ComicPageComponent,
+    ReadComicComponent
   ],
   imports: [
     BrowserModule,
