@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { DataService } from '../../data.service';
 
-import { Character } from '../data-interfaces/character';
+import { Character } from '../../data-interfaces/character';
 
 @Component({
   selector: 'app-characters',

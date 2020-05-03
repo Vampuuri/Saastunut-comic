@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { DataService } from '../../data.service';
 
-import { Turn } from '../data-interfaces/turn';
+import { Turn } from '../../data-interfaces/turn';
 
 @Component({
   selector: 'app-active-turn',
