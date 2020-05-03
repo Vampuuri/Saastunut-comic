@@ -4,8 +4,9 @@ import { ReadComicComponent } from './read-comic/read-comic.component';
 import { ComicPageComponent } from './comic-page/comic-page.component';
 
 const comicRoutes: Routes = [
-    {path: 'comic', component: ReadComicComponent},
-    {path: 'comic/:pagenumber', component: ComicPageComponent}
+    {path: 'comic', component: ReadComicComponent, children: [
+        {path: ':pagenumber', component: ComicPageComponent}
+    ]}
 ];
 
 @NgModule({
