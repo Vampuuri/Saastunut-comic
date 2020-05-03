@@ -7,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() {
-    console.log('homepage constructor')
-  }
+  constructor() {}
 
   ngOnInit(): void {
   }
