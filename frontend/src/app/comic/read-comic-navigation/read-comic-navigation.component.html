@@ -1,1 +1,3 @@
-<p>read-comic-navigation works!</p>
+<div>
+    <span class="pageLink" *ngFor="let page of pages"><a routerLink={{page.id}}>{{page.id}}</a></span>
+</div>
