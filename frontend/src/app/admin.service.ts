@@ -18,4 +18,9 @@ export class AdminService {
       .subscribe(() => onSuccess(), (err) => onError(err))
   }
 
+  changeArtistStatus(status: string, artistId: number, onSuccess: () => any, onError: (error: Error) => any) {
+    this.http.put(`http://localhost:3000/artists/${artistId}`, {status: status})
+      .subscribe(() => onSuccess(), (err) => onError(err))
+  }
+
 }
