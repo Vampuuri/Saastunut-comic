@@ -353,6 +353,41 @@ app.put('/pages/:id([0-9]+)', function(req,res) {
     }
 });
 
+app.put('/artists/:id([0-9]+)', function(req,res) {
+    var id = req.params.id;
+    var status = req.body.status;
+
+    if (status && id) {
+        con.getConnection(function(err, connection) {
+            if (err) {
+                connection.release();
+                throw err;
+            } else {
+                sql = `UPDATE artist
+                    SET status='${status}'
+                    WHERE id = ${id};`
+                con.query(sql, function (err, result) {
+                    if (err) {
+                        connection.release();
+                        throw err;
+                    } else {
+                        console.log(`artist by id ${id} modified`)
+                        res.send(result);
+                        connection.release();
+                    }
+                  });
+            }
+        })
+    } else {
+        res.status(304)
+        res.send({
+            code: 304,
+            message: `Bad body`,
+            description: `Request body didn't hold the needed information`
+        });
+    }
+});
+
 var server = app.listen(3000, function() {
     console.log('Server listening...')
 });
