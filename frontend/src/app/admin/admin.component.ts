@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 import { Artist } from '../data-interfaces/artist';
 import { Turn } from '../data-interfaces/turn';
 import { Page } from '../data-interfaces/page';
+import { Round } from '../data-interfaces/round';
 
 @Component({
   selector: 'app-admin',
@@ -14,6 +15,7 @@ export class AdminComponent implements OnInit {
   pages: Page[] = [];
   artists: Artist[] = [];
   turns: Turn[] = [];
+  rounds: Round[][] = [];
 
   constructor(private adminService: AdminService, private dataService: DataService) { }
 
@@ -25,6 +27,29 @@ export class AdminComponent implements OnInit {
     this.artists = newArtists;
   }
 
+  updateRounds(newRounds: Round[]) {
+    var updatedRounds = [];
+    
+    var turnId = -1;
+    var roundNumber = -1;
+    var helper = [];
+    for (let round of newRounds) {
+      if (roundNumber !== -1 && roundNumber !== round.number) {
+        updatedRounds.push([...helper])
+        helper = [];
+      }
+
+      if (round.turnId !== turnId) {
+        helper.push(round);
+        turnId = round.turnId;
+      }
+
+      roundNumber = round.number;
+    }
+
+    this.rounds = updatedRounds;
+  }
+
   error(error: Error) {
     alert("Tapahtui virhe: " + error.message);
   }
@@ -32,6 +57,7 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getPages(res => this.updatePages(res), err => this.error(err));
     this.dataService.getArtists(res => this.updateArtists(res), err => this.error(err));
+    this.dataService.getRounds(res => this.updateRounds(res), err => this.error(err));
   }
 
 }
