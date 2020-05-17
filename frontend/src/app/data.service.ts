@@ -5,6 +5,7 @@ import { Character } from './data-interfaces/character';
 import { Page } from './data-interfaces/page';
 import { Turn } from './data-interfaces/turn';
 import { Artist } from './data-interfaces/artist';
+import { Round } from './data-interfaces/round';
 
 @Injectable()
 export class DataService {
@@ -13,6 +14,10 @@ export class DataService {
 
   getArtists(onSuccess: (res: any) => any, onError: (res: any) => any): void {
     this.http.get<Artist[]>('http://localhost:3000/artists').subscribe(res => {onSuccess(res)}, err => onError(err));
+  }
+
+  getRounds(onSuccess: (res: any) => any, onError: (res: any) => any): void {
+    this.http.get<Round[]>('http://localhost:3000/rounds').subscribe(res => {onSuccess(res)}, err => onError(err));
   }
 
   getPages(onSuccess: (res: any) => any, onError: (res: any) => any): void {
