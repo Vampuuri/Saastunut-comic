@@ -29,6 +29,7 @@ export class AdminComponent implements OnInit {
 
   updateRounds(newRounds: Round[]) {
     var updatedRounds = [];
+    console.log(newRounds);
     
     var turnId = -1;
     var roundNumber = -1;
@@ -46,6 +47,7 @@ export class AdminComponent implements OnInit {
 
       roundNumber = round.number;
     }
+    updatedRounds.push(helper);
 
     this.rounds = updatedRounds;
   }

@@ -1,0 +1,7 @@
+.skipped {
+    text-decoration: line-through;
+}
+
+.active {
+    font-weight: bold;
+}

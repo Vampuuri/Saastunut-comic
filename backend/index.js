@@ -235,7 +235,7 @@ app.get('/rounds', function(req,res) {
                     connection.release();
                     throw err;
                 } else {
-                    console.log(`active turn fetched`)
+                    console.log(`rounds fetched`)
                     res.send(result);
                     connection.release();
                 }

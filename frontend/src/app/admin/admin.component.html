@@ -2,8 +2,8 @@
 
 <table>
     <tr>
-        <td>Nimi</td>
-        <td>Status</td>
+        <td><b>Nimi</b></td>
+        <td><b>Status</b></td>
         <td></td>
         <td></td>
         <td></td>
@@ -21,10 +21,10 @@
 
 <table>
     <tr>
-        <td>Sivu</td>
-        <td>Artisti</td>
-        <td>Sisältö</td>
-        <td>Päivämäärä</td>
+        <td><b>Sivu</b></td>
+        <td><b>Artisti</b></td>
+        <td><b>Sisältö</b></td>
+        <td><b>Päivämäärä</b></td>
         <td></td>
     </tr>
     <tr *ngFor="let page of pages">
@@ -46,3 +46,18 @@
         <td><button>Lisää sivu</button></td>
     </tr>
 </table>
+
+<h3>Kierrokset</h3>
+
+<div>
+<ng-container *ngFor="let roundArray of rounds, let i = index">
+    <p>
+        <b>Kierros {{i+1}}</b>
+        <ng-container *ngFor="let round of roundArray">
+            <br/><span [class.skipped]="round.skipped" [class.active]="round.active">{{round.username}}</span>
+            <span *ngIf="round.active"> - Deadline {{round.date | date:'dd.MM.-yy'}}</span>
+            <span *ngIf="!round.skipped && round.date"> - {{round.date | date:'dd.MM.-yy'}}</span>
+        </ng-container>
+    </p>
+</ng-container>
+</div>
