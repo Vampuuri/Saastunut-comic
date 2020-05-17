@@ -1,9 +1,16 @@
-var express = require('express');
-var cors = require('cors');
-var app = express();
 var con = require('./databaseConnection');
 
+var express = require('express');
+var cors = require('cors');
+var bodyParser = require('body-parser');
+var app = express();
+
+app.use(bodyParser.json())
 app.use(cors());
+
+//-----------------------------------------------------------------------------------------
+// GET MAPPING
+//-----------------------------------------------------------------------------------------
 
 app.get('/characters', function(req,res) {
     con.getConnection(function(err, connection) {
@@ -264,6 +271,45 @@ app.get('/rounds/latest', function(req,res) {
         }
     })
 
+});
+
+//-----------------------------------------------------------------------------------------
+// POST MAPPING
+//-----------------------------------------------------------------------------------------
+
+app.post('/pages', function(req,res) {
+    var artistId = req.body.artistId;
+    var content = req.body.content;
+    var date = req.body.date;
+
+    if (artistId && content && date) {
+        con.getConnection(function(err, connection) {
+            if (err) {
+                connection.release();
+                throw err;
+            } else {
+                sql = `INSERT INTO page (artistId, content, date) VALUES
+                    (${artistId}, '${content}', '${date}');`
+                con.query(sql, function (err, result) {
+                    if (err) {
+                        connection.release();
+                        throw err;
+                    } else {
+                        console.log(`active turn fetched`)
+                        res.send(result);
+                        connection.release();
+                    }
+                  });
+            }
+        })
+    } else {
+        res.status(400)
+        res.send({
+            code: 400,
+            message: `Bad body`,
+            description: `Request body didn't hold the needed information`
+        });
+    }
 });
 
 var server = app.listen(3000, function() {
