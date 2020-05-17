@@ -295,7 +295,7 @@ app.post('/pages', function(req,res) {
                         connection.release();
                         throw err;
                     } else {
-                        console.log(`active turn fetched`)
+                        console.log(`new page added`)
                         res.send(result);
                         connection.release();
                     }
@@ -306,6 +306,47 @@ app.post('/pages', function(req,res) {
         res.status(400)
         res.send({
             code: 400,
+            message: `Bad body`,
+            description: `Request body didn't hold the needed information`
+        });
+    }
+});
+
+//-----------------------------------------------------------------------------------------
+// PUT MAPPING
+//-----------------------------------------------------------------------------------------
+
+app.put('/pages/:id([0-9]+)', function(req,res) {
+    var id = req.params.id;
+    var artistId = req.body.artistId;
+    var content = req.body.content;
+    var date = req.body.date;
+
+    if (artistId && content && date && id) {
+        con.getConnection(function(err, connection) {
+            if (err) {
+                connection.release();
+                throw err;
+            } else {
+                sql = `UPDATE page
+                    SET artistId=${artistId}, content='${content}', date='${date}'
+                    WHERE id = ${id};`
+                con.query(sql, function (err, result) {
+                    if (err) {
+                        connection.release();
+                        throw err;
+                    } else {
+                        console.log(`page ${id} modified`)
+                        res.send(result);
+                        connection.release();
+                    }
+                  });
+            }
+        })
+    } else {
+        res.status(304)
+        res.send({
+            code: 304,
             message: `Bad body`,
             description: `Request body didn't hold the needed information`
         });
