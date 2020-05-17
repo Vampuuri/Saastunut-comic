@@ -7,4 +7,4 @@ const connection = {
 
 var mysql = require('mysql');
 
-module.exports = con = mysql.createConnection(connection);
+module.exports = con = mysql.createPool(connection);
