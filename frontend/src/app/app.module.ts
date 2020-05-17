@@ -17,6 +17,7 @@ import { ComicRoutingModule } from './comic/comic-routing.module';
 import { DataService } from './data.service';
 import { ReadComicNavigationComponent } from './comic/read-comic-navigation/read-comic-navigation.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminService } from './admin.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { AdminComponent } from './admin/admin.component';
     MainRoutingModule,
     ComicRoutingModule
   ],
-  providers: [DataService],
+  providers: [DataService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,18 @@
-<p>admin works!</p>
+<h3>Sivut</h3>
+
+<table>
+    <tr>
+        <td>Sivu</td>
+        <td>Artisti</td>
+        <td>Sisältö</td>
+        <td>Päivämäärä</td>
+        <td></td>
+    </tr>
+    <tr *ngFor="let page of pages">
+        <td>{{page.id}}</td>
+        <td>{{page.username}}</td>
+        <td><a href="{{page.content}}" target=">blank">{{page.content}}</a></td>
+        <td>{{page.date | date:'dd.MM.-yy'}}</td>
+        <td><button>Muokkaa</button></td>
+    </tr>
+</table>

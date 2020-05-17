@@ -8,14 +8,14 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  postNewPage(page: Page, artistId: number, onSuccess: (page: Page) => any, onError: () => any) {
+  postNewPage(page: Page, artistId: number, onSuccess: (page: Page) => any, onError: (error: Error) => any) {
     this.http.post<Page>('http://localhost:3000/pages', {artistId: artistId, content: page.content, date: page.date})
-      .subscribe(res => {onSuccess(res)}, () => onError());
+      .subscribe(res => {onSuccess(res)}, (err) => onError(err));
   }
 
-  updatePage(page: Page, artistId: number, onSuccess: () => any, onError: () => any) {
+  updatePage(page: Page, artistId: number, onSuccess: () => any, onError: (error: Error) => any) {
     this.http.put(`http://localhost:3000/pages/${page.id}`, {artistId: artistId, content: page.content, date: page.date})
-      .subscribe(() => onSuccess(), () => onError())
+      .subscribe(() => onSuccess(), (err) => onError(err))
   }
 
 }
