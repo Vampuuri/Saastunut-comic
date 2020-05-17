@@ -5,11 +5,28 @@ var con = require('./databaseConnection');
 
 app.use(cors());
 
-/**
-
 app.get('/characters', function(req,res) {
-    res.send(db.get('characters'));
+    con.connect(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            sql = `SELECT c.*, a.username FROM
+                comicCharacter c
+                inner join artist a
+                on c.artistId = a.id;`
+            con.query(sql, function (err, result) {
+                if (err) {
+                    throw err;
+                } else {
+                    console.log('Character sent')
+                    res.send(result);
+                }
+              });
+        }
+    })
 });
+
+/**
 
 app.get('/characters/main', function(req,res) {
     var mainCharacters = [];
