@@ -1,7 +1,7 @@
 <span *ngIf="!loading">
     <span *ngIf="!lastPage">
         <p><img src={{page.content}} />
-        <br/><span>{{page.artist}}</span>, {{page.date | date:'dd.MM.-yy'}}</p>
+        <br/><span>{{page.username}}</span>, {{page.date | date:'dd.MM.-yy'}}</p>
     </span>
 
     <p *ngIf="lastPage">Jatkuu pian...</p>

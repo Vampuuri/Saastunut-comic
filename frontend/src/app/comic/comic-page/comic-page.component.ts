@@ -13,12 +13,13 @@ export class ComicPageComponent implements OnInit {
   pageNumber: number;
   loading: boolean = true;
   lastPage: boolean = false;
-  page = {content: '', id: 0, artist: '', date: new Date()}
+  page = {content: '', id: 0, username: '', date: new Date()}
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private dataService: DataService) { }
 
-  setPage(page: Page) {
-    this.page = page;
+  setPage(pageArray: Page[]) {
+    this.page = pageArray[0];
+    this.lastPage = false;
     this.loading = false;
   }
 
@@ -41,6 +42,7 @@ export class ComicPageComponent implements OnInit {
 
   setPageNumber(newNumberString: string) {
     if (newNumberString.match(/^[0-9]+$/) != null) {
+      this.loading = true;
       this.pageNumber = parseInt(newNumberString);
       this.dataService.getPageById(this.pageNumber, (res) => {this.setPage(res)}, () => {this.onLastPage()});
     } else {

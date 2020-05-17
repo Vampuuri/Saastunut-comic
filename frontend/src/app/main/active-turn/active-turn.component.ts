@@ -10,16 +10,16 @@ import { Turn } from '../../data-interfaces/turn';
 })
 export class ActiveTurnComponent implements OnInit {
   turn: Turn = {id: 0,
-    artist: '',
-    round: 0,
+    username: '',
     date: null,
     done: false,
     active: false,
     skipped: false
   }
 
-  updateTurn(newTurn: Turn) {
-    this.turn = newTurn;
+  updateTurn(newTurnArray: Turn[]) {
+    console.log(newTurnArray)
+    this.turn = newTurnArray[0];
   }
 
   constructor(private dataService: DataService) { }

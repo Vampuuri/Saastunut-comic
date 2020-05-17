@@ -15,7 +15,7 @@ export class DataService {
   }
 
   getPageById(id: number, onSuccess: (res: any) => any, onError: () => any): void {
-    this.http.get<Page>('http://localhost:3000/pages/'+id).subscribe(res => {onSuccess(res)}, () => onError());
+    this.http.get<Page[]>('http://localhost:3000/pages/'+id).subscribe(res => {onSuccess(res)}, () => onError());
   }
 
   getMainCharacters(onSuccess: (res: any) => any, onError: (res: any) => any): void {
@@ -31,7 +31,7 @@ export class DataService {
   }
 
   getActiveTurn(onSuccess: (res: any) => any, onError: (res: any) => any): void {
-    this.http.get<Turn>('http://localhost:3000/turns/active').subscribe(res => {
+    this.http.get<Turn[]>('http://localhost:3000/turns/active').subscribe(res => {
       onSuccess(res);
     });
   }
