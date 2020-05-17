@@ -6,8 +6,9 @@ var con = require('./databaseConnection');
 app.use(cors());
 
 app.get('/characters', function(req,res) {
-    con.getConnection(function(err) {
+    con.getConnection(function(err, connection) {
         if (err) {
+            connection.release();
             throw err;
         } else {
             sql = `SELECT c.*, a.username FROM
@@ -16,19 +17,22 @@ app.get('/characters', function(req,res) {
                 ON c.artistId = a.id;`
             con.query(sql, function (err, result) {
                 if (err) {
+                    connection.release();
                     throw err;
                 } else {
                     console.log('Characters fetched')
                     res.send(result);
                 }
+                connection.release();
               });
         }
     })
 });
 
 app.get('/characters/main', function(req,res) {
-    con.getConnection(function(err) {
+    con.getConnection(function(err, connection) {
         if (err) {
+            connection.release();
             throw err;
         } else {
             sql = `SELECT c.*, a.username FROM
@@ -38,19 +42,22 @@ app.get('/characters/main', function(req,res) {
                 WHERE c.mainCharacter = true;`
             con.query(sql, function (err, result) {
                 if (err) {
+                    connection.release();
                     throw err;
                 } else {
                     console.log('Main characters fetched')
                     res.send(result);
                 }
+                connection.release();
               });
         }
     })
 });
 
 app.get('/characters/side', function(req,res) {
-    con.getConnection(function(err) {
+    con.getConnection(function(err, connection) {
         if (err) {
+            connection.release();
             throw err;
         } else {
             sql = `SELECT c.*, a.username FROM
@@ -60,19 +67,23 @@ app.get('/characters/side', function(req,res) {
                 WHERE c.mainCharacter = false;`
             con.query(sql, function (err, result) {
                 if (err) {
+                    connection.release();
                     throw err;
                 } else {
                     console.log('Side characters fetched')
                     res.send(result);
                 }
+                connection.release();
               });
+              
         }
     })
 });
 
 app.get('/pages', function(req,res) {
-    con.getConnection(function(err) {
+    con.getConnection(function(err, connection) {
         if (err) {
+            connection.release();
             throw err;
         } else {
             sql = `SELECT p.*, a.username FROM
@@ -82,19 +93,22 @@ app.get('/pages', function(req,res) {
                 ORDER BY p.id;`
             con.query(sql, function (err, result) {
                 if (err) {
+                    connection.release();
                     throw err;
                 } else {
                     console.log('Pages fetched')
                     res.send(result);
                 }
+                connection.release();
               });
         }
     })
 });
 
 app.get('/pages/:id([0-9]+)', function(req,res) {
-    con.getConnection(function(err) {
+    con.getConnection(function(err, connection) {
         if (err) {
+            connection.release();
             throw err;
         } else {
             sql = `SELECT p.*, a.username FROM
@@ -104,6 +118,7 @@ app.get('/pages/:id([0-9]+)', function(req,res) {
                 WHERE p.id = ${parseInt(req.params.id)};`
             con.query(sql, function (err, result) {
                 if (err) {
+                    connection.release();
                     throw err;
                 } else {
                     if (result.length === 0) {
@@ -118,6 +133,7 @@ app.get('/pages/:id([0-9]+)', function(req,res) {
                         console.log(`page ${parseInt(req.params.id)} fetched`)
                         res.send(result);
                     }
+                    connection.release();
                 }
               });
         }
@@ -125,26 +141,30 @@ app.get('/pages/:id([0-9]+)', function(req,res) {
 });
 
 app.get('/artists', function(req,res) {
-    con.getConnection(function(err) {
+    con.getConnection(function(err, connection) {
         if (err) {
+            connection.release();
             throw err;
         } else {
             sql = `SELECT * FROM artist`
             con.query(sql, function (err, result) {
                 if (err) {
+                    connection.release();
                     throw err;
                 } else {
                     console.log(`artists fetched`)
                     res.send(result);
                 }
+                connection.release();
               });
         }
     })
 });
 
 app.get('/turns', function(req,res) {
-    con.getConnection(function(err) {
+    con.getConnection(function(err, connection) {
         if (err) {
+            connection.release();
             throw err;
         } else {
             sql = `SELECT t.*, a.username
@@ -153,19 +173,22 @@ app.get('/turns', function(req,res) {
                 ON t.artistId = a.id`
             con.query(sql, function (err, result) {
                 if (err) {
+                    connection.release();
                     throw err;
                 } else {
                     console.log(`turns fetched`)
                     res.send(result);
                 }
+                connection.release();
               });
         }
     })
 });
 
 app.get('/turns/active', function(req,res) {
-    con.getConnection(function(err) {
+    con.getConnection(function(err, connection) {
         if (err) {
+            connection.release();
             throw err;
         } else {
             sql = `SELECT t.*, a.username
@@ -175,10 +198,12 @@ app.get('/turns/active', function(req,res) {
                 WHERE active = true`
             con.query(sql, function (err, result) {
                 if (err) {
+                    connection.release();
                     throw err;
                 } else {
                     console.log(`active turn fetched`)
                     res.send(result);
+                    connection.release();
                 }
               });
         }
@@ -186,8 +211,9 @@ app.get('/turns/active', function(req,res) {
 });
 
 app.get('/rounds', function(req,res) {
-    con.getConnection(function(err) {
+    con.getConnection(function(err, connection) {
         if (err) {
+            connection.release();
             throw err;
         } else {
             sql = `SELECT r.*, t.* , a.username
@@ -199,10 +225,12 @@ app.get('/rounds', function(req,res) {
                 ORDER BY r.number, t.id, pageId;`
             con.query(sql, function (err, result) {
                 if (err) {
+                    connection.release();
                     throw err;
                 } else {
                     console.log(`active turn fetched`)
                     res.send(result);
+                    connection.release();
                 }
               });
         }
@@ -210,8 +238,9 @@ app.get('/rounds', function(req,res) {
 });
 
 app.get('/rounds/latest', function(req,res) {
-    con.getConnection(function(err) {
+    con.getConnection(function(err, connection) {
         if (err) {
+            connection.release();
             throw err;
         } else {
             sql = `SELECT r.*, t.* , a.username, MAX(r.number) AS 'latest'
@@ -224,14 +253,17 @@ app.get('/rounds/latest', function(req,res) {
                 ORDER BY r.number, t.id, pageId;`
             con.query(sql, function (err, result) {
                 if (err) {
+                    connection.release();
                     throw err;
                 } else {
                     console.log(`active turn fetched`)
                     res.send(result);
+                    connection.release();
                 }
               });
         }
     })
+
 });
 
 var server = app.listen(3000, function() {
