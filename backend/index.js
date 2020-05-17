@@ -209,6 +209,31 @@ app.get('/rounds', function(req,res) {
     })
 });
 
+app.get('/rounds/latest', function(req,res) {
+    con.getConnection(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            sql = `SELECT r.*, t.* , a.username, MAX(r.number) AS 'latest'
+                FROM round r
+                    INNER JOIN turn t
+                        ON r.turnId = t.id
+                    INNER JOIN artist a
+                        ON t.artistId = a.id
+                WHERE r.number = (SELECT MAX(number) FROM round)
+                ORDER BY r.number, t.id, pageId;`
+            con.query(sql, function (err, result) {
+                if (err) {
+                    throw err;
+                } else {
+                    console.log(`active turn fetched`)
+                    res.send(result);
+                }
+              });
+        }
+    })
+});
+
 var server = app.listen(3000, function() {
     console.log('Server listening...')
 });
