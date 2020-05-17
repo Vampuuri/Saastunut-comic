@@ -11,9 +11,9 @@
     <tr *ngFor="let artist of artists">
         <td>{{artist.username}}</td>
         <td>{{artist.status}}</td>
-        <td><span *ngIf="artist.status !== 'Active'"><button>Active</button></span></td>
-        <td><span *ngIf="artist.status !== 'On hiatus'"><button>On hiatus</button></span></td>
-        <td><span *ngIf="artist.status !== 'Resigned'"><button>Resigned</button></span></td>
+        <td><span *ngIf="artist.status !== 'Active'"><button (click)="changeArtistStatus(artist.id, 'Active')">Active</button></span></td>
+        <td><span *ngIf="artist.status !== 'On hiatus'" (click)="changeArtistStatus(artist.id, 'On hiatus')"><button>On hiatus</button></span></td>
+        <td><span *ngIf="artist.status !== 'Resigned'" (click)="changeArtistStatus(artist.id, 'Resigned')"><button>Resigned</button></span></td>
     </tr>
 </table>
 

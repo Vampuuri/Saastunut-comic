@@ -5,6 +5,7 @@ import { Artist } from '../data-interfaces/artist';
 import { Turn } from '../data-interfaces/turn';
 import { Page } from '../data-interfaces/page';
 import { Round } from '../data-interfaces/round';
+import { onErrorResumeNext } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -19,6 +20,12 @@ export class AdminComponent implements OnInit {
 
   constructor(private adminService: AdminService, private dataService: DataService) { }
 
+  changeArtistStatus(artistId: number, status: string) {
+    this.adminService.changeArtistStatus(status, artistId,
+      () => this.dataService.getArtists(res => this.updateArtists(res), err => this.error(err)),
+      (err) => this.error(err));
+  }
+
   updatePages(newPages: Page[]) {
     this.pages = newPages;
   }
@@ -29,7 +36,6 @@ export class AdminComponent implements OnInit {
 
   updateRounds(newRounds: Round[]) {
     var updatedRounds = [];
-    console.log(newRounds);
     
     var turnId = -1;
     var roundNumber = -1;
