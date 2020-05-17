@@ -6,7 +6,7 @@ var con = require('./databaseConnection');
 app.use(cors());
 
 app.get('/characters', function(req,res) {
-    con.connect(function(err) {
+    con.getConnection(function(err) {
         if (err) {
             throw err;
         } else {
@@ -18,7 +18,7 @@ app.get('/characters', function(req,res) {
                 if (err) {
                     throw err;
                 } else {
-                    console.log('Character sent')
+                    console.log('Characters fetched')
                     res.send(result);
                 }
               });
@@ -27,7 +27,7 @@ app.get('/characters', function(req,res) {
 });
 
 app.get('/characters/main', function(req,res) {
-    con.connect(function(err) {
+    con.getConnection(function(err) {
         if (err) {
             throw err;
         } else {
@@ -40,7 +40,7 @@ app.get('/characters/main', function(req,res) {
                 if (err) {
                     throw err;
                 } else {
-                    console.log('Character sent')
+                    console.log('Main characters fetched')
                     res.send(result);
                 }
               });
@@ -49,7 +49,7 @@ app.get('/characters/main', function(req,res) {
 });
 
 app.get('/characters/side', function(req,res) {
-    con.connect(function(err) {
+    con.getConnection(function(err) {
         if (err) {
             throw err;
         } else {
@@ -62,7 +62,7 @@ app.get('/characters/side', function(req,res) {
                 if (err) {
                     throw err;
                 } else {
-                    console.log('Character sent')
+                    console.log('Side characters fetched')
                     res.send(result);
                 }
               });
@@ -70,33 +70,60 @@ app.get('/characters/side', function(req,res) {
     })
 });
 
-/**
-
 app.get('/pages', function(req,res) {
-    res.send(db.get('pages'));
+    con.getConnection(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            sql = `SELECT p.*, a.username FROM
+                page p
+                INNER JOIN artist a
+                ON p.artistId = a.id;`
+            con.query(sql, function (err, result) {
+                if (err) {
+                    throw err;
+                } else {
+                    console.log('Pages fetched')
+                    res.send(result);
+                }
+              });
+        }
+    })
 });
 
 app.get('/pages/:id([0-9]+)', function(req,res) {
-    var pagesArray = db.get('pages');
-    var id = parseInt(req.params.id);
-    var found = false;
-
-    for (var page of pagesArray) {
-        if (page.id === id) {
-            found = true;
-            res.send(page);
-            break;
+    con.getConnection(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            sql = `SELECT p.*, a.username FROM
+                page p
+                INNER JOIN artist a
+                ON p.artistId = a.id
+                WHERE p.id = ${parseInt(req.params.id)};`
+            con.query(sql, function (err, result) {
+                if (err) {
+                    throw err;
+                } else {
+                    if (result.length === 0) {
+                        console.log(`page ${parseInt(req.params.id)} was not found`)
+                        res.status(404)
+                        res.send({
+                            code: 404,
+                            message: `Page not found`,
+                            description: `Page ${parseInt(req.params.id)} was not found`
+                        });
+                    } else {
+                        console.log(`page ${parseInt(req.params.id)} fetched`)
+                        res.send(result);
+                    }
+                }
+              });
         }
-    }
-
-    if (!found) {
-        res.status(404);
-        var desc = 'The resource with id = ' + id + ' did not exist';
-        res.send({code: 404,
-            message: 'Resource not found.',
-            description: desc});
-    }
+    })
 });
+
+/**
 
 app.get('/artists', function(req,res) {
     res.send(db.get('artists'));
