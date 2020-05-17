@@ -1,3 +1,22 @@
+<h3>Piirtäjät</h3>
+
+<table>
+    <tr>
+        <td>Nimi</td>
+        <td>Status</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr *ngFor="let artist of artists">
+        <td>{{artist.username}}</td>
+        <td>{{artist.status}}</td>
+        <td><span *ngIf="artist.status !== 'Active'"><button>Active</button></span></td>
+        <td><span *ngIf="artist.status !== 'On hiatus'"><button>On hiatus</button></span></td>
+        <td><span *ngIf="artist.status !== 'Resigned'"><button>Resigned</button></span></td>
+    </tr>
+</table>
+
 <h3>Sivut</h3>
 
 <table>
@@ -14,5 +33,16 @@
         <td><a href="{{page.content}}" target=">blank">{{page.content}}</a></td>
         <td>{{page.date | date:'dd.MM.-yy'}}</td>
         <td><button>Muokkaa</button></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <select>
+                <option *ngFor="let artist of artists" value="artist.id">{{artist.username}}</option>
+            </select>
+        </td>
+        <td><input></td>
+        <td><input></td>
+        <td><button>Lisää sivu</button></td>
     </tr>
 </table>

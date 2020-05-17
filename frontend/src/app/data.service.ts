@@ -4,11 +4,16 @@ import { HttpClient } from '@angular/common/http';
 import { Character } from './data-interfaces/character';
 import { Page } from './data-interfaces/page';
 import { Turn } from './data-interfaces/turn';
+import { Artist } from './data-interfaces/artist';
 
 @Injectable()
 export class DataService {
 
   constructor(private http: HttpClient) { }
+
+  getArtists(onSuccess: (res: any) => any, onError: (res: any) => any): void {
+    this.http.get<Artist[]>('http://localhost:3000/artists').subscribe(res => {onSuccess(res)}, err => onError(err));
+  }
 
   getPages(onSuccess: (res: any) => any, onError: (res: any) => any): void {
     this.http.get<Page[]>('http://localhost:3000/pages').subscribe(res => {onSuccess(res)});

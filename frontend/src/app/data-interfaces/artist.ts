@@ -5,7 +5,8 @@ export enum Status {
 }
 
 export interface Artist {
-    name: string;            // also id/key
+    id: number;
+    name: string;
     status: Status;
     //contactInfo: string[];
 }

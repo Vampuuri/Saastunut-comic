@@ -12,7 +12,7 @@ import { Page } from '../data-interfaces/page';
 })
 export class AdminComponent implements OnInit {
   pages: Page[] = [];
-  artist: Artist[] = [];
+  artists: Artist[] = [];
   turns: Turn[] = [];
 
   constructor(private adminService: AdminService, private dataService: DataService) { }
@@ -21,12 +21,17 @@ export class AdminComponent implements OnInit {
     this.pages = newPages;
   }
 
+  updateArtists(newArtists: Artist[]) {
+    this.artists = newArtists;
+  }
+
   error(error: Error) {
     alert("Tapahtui virhe: " + error.message);
   }
 
   ngOnInit(): void {
     this.dataService.getPages(res => this.updatePages(res), err => this.error(err));
+    this.dataService.getArtists(res => this.updateArtists(res), err => this.error(err));
   }
 
 }
