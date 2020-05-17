@@ -11,5 +11,5 @@ export interface Character {
     reasonToStay: string;
     mainCharacter: boolean;
     firstAppearance: number;
-    artist: string;
+    username: string;
 }

@@ -1,7 +1,6 @@
 export interface Turn {
     id: number;
-    artist: string;
-    round: number;
+    username: string;
     date: Date;         // deadline or date when pages were uploaded
     done: boolean;
     active: boolean;
