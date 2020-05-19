@@ -5,8 +5,7 @@ import { Artist } from '../data-interfaces/artist';
 import { Turn } from '../data-interfaces/turn';
 import { Page } from '../data-interfaces/page';
 import { Round } from '../data-interfaces/round';
-import { onErrorResumeNext } from 'rxjs';
-import { HttpEventType } from '@angular/common/http';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-admin',
@@ -18,14 +17,12 @@ export class AdminComponent implements OnInit {
   artists: Artist[] = [];
   turns: Turn[] = [];
   rounds: Round[][] = [];
-
-  content: string = '';
-  artistId: number = -1;
   
   newPageContent: string = '';
   newPageArtistId: number = 1;
   newPageDate: string = '';
 
+  updatePageId: number = -1;
   updatePageContent: string = '';
   updatePageArtistId: number = 1;
   updatePageDate: string = '';
@@ -38,8 +35,40 @@ export class AdminComponent implements OnInit {
       (err) => this.error(err));
   }
 
-  editPage() {
-    
+  editPage(pageId: number, username: string, content: string, date: string) {
+    var artistId = 1;
+
+    for (let artist of this.artists) {
+      if (artist.username === username) {
+        artistId = artist.id;
+      }
+    }
+
+    var dateObj = new Date(date);
+
+    this.updatePageId = pageId;
+    this.updatePageContent = content;
+    this.updatePageArtistId = artistId;
+    this.updatePageDate = formatDate(dateObj, 'yyyy-MM-dd', 'en_US');
+  }
+
+  updatePage() {
+    try {
+      const page: Page = {id: this.updatePageId, content: this.updatePageContent, username: '', date: new Date(this.updatePageDate)};
+      this.adminService.updatePage(
+        page,
+        this.updatePageArtistId,
+        () => this.dataService.getPages(res => this.updatePages(res), err => this.error(err)),
+        err => this.error(err)
+      );
+    } catch (err) {
+      this.error(err)
+    }
+
+    this.updatePageId = -1;
+    this.updatePageContent = '';
+    this.updatePageArtistId = 1;
+    this.updatePageDate = '';
   }
 
   addNewPage() {

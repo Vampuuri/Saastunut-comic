@@ -29,10 +29,17 @@
     </tr>
     <tr *ngFor="let page of pages">
         <td>{{page.id}}</td>
-        <td>{{page.username}}</td>
-        <td><a href="{{page.content}}" target=">blank">{{page.content}}</a></td>
-        <td>{{page.date | date:'dd.MM.-yy'}}</td>
-        <td><button (click)="editPage()">Muokkaa</button></td>
+        <td>{{page.username}}
+            <p *ngIf="page.id===updatePageId"><select [(ngModel)]="updatePageArtistId">
+                <option *ngFor="let artist of artists" value={{artist.id}}>{{artist.username}}</option>
+            </select></p>
+        </td>
+        <td><a href="{{page.content}}" target=">blank">{{page.content}}</a> <p *ngIf="page.id===updatePageId"><input [(ngModel)]="updatePageContent"></p></td>
+        <td>{{page.date | date:'dd.MM.-yy'}} <p *ngIf="page.id===updatePageId"><input [(ngModel)]="updatePageDate" type="date"></p></td>
+        <td>
+            <p *ngIf="page.id!==updatePageId"><button (click)="editPage(page.id, page.username, page.content, page.date)">Muokkaa</button></p>
+            <p *ngIf="page.id===updatePageId"><button (click)="updatePage()">Päivitä</button></p>
+        </td>
     </tr>
     <tr>
         <td></td>
