@@ -1,3 +1,5 @@
-<div>
-    <span class="pageLink" *ngFor="let page of pages"><a routerLink={{page.id}}>{{page.id}}</a></span>
+<div class="navigation-container">
+    <p><a routerLink="/">Takaisin pääsivustolle</a></p>
+
+    <span class="pageLink" *ngFor="let page of pages"><a routerLink={{page.id}}>{{page.id + ' '}}</a></span>
 </div>

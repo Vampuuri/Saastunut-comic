@@ -25,6 +25,7 @@ export class ComicPageComponent implements OnInit {
 
   onLastPage() {
     this.lastPage = true;
+    this.loading = false;
   }
 
   previousPage() {

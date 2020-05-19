@@ -1,3 +1,8 @@
-.pageLink {
-    padding: 1px 3px;
+.navigation-container {
+    width: 150px;
+    margin: 5px;
+    padding: 5px;
+    white-space: normal;
+    float: left;
+    line-height: 125%;
 }
