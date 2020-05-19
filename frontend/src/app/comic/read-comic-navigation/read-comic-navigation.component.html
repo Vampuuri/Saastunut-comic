@@ -1,5 +1,16 @@
 <div class="navigation-container">
     <p><a routerLink="/">Takaisin pääsivustolle</a></p>
 
+    <ng-container *ngFor="let roundArray of rounds, let i = index">
+        <p>
+            <b>Kierros {{i+1}}</b><br/>
+            <ng-container *ngFor="let round of roundArray">
+                <a *ngIf="round.pageId" routerLink={{round.pageId}}>{{round.pageId + ' '}}</a>
+            </ng-container>
+        </p>
+    </ng-container>
+
+    <h4>Kaikki sivut:</h4>
+
     <span class="pageLink" *ngFor="let page of pages"><a routerLink={{page.id}}>{{page.id + ' '}}</a></span>
 </div>
