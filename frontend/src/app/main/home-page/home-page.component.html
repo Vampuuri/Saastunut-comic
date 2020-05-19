@@ -1,11 +1,14 @@
-<h1>Saastunut</h1>
-<ul>
-    <li><a routerLink="/">Etusivu</a></li>
-    <li><a routerLink="/info">Info</a></li>
-    <li><a routerLink="/characters">Hahmot</a></li>
-    <li><a routerLink="/comic">Sarjakuva</a></li>
-</ul>
-<app-active-turn></app-active-turn>
-<div>
-    <router-outlet></router-outlet>
+<div class="wrapper">
+    <div class="navigation-component">
+        <app-active-turn></app-active-turn>
+        <ul>
+            <li><a routerLink="/">Etusivu</a></li>
+            <li><a routerLink="/info">Info</a></li>
+            <li><a routerLink="/characters">Hahmot</a></li>
+            <li><a routerLink="/comic">Sarjakuva</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
 </div>

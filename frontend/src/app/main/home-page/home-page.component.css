@@ -1,0 +1,39 @@
+ul {
+    list-style-type: none;
+    list-style-position: inside;
+    margin: auto;
+    padding: 0;
+    width: 75%;
+}
+
+li a {
+    display: block;
+    background-color: rgb(46, 46, 46);
+    color: rgb(255, 255, 255);
+    padding: 8px 16px;
+    margin: 2px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.navigation-component {
+    width:200px;
+    float:left;
+    text-align: center;
+}
+
+.wrapper {
+    width: 75%;
+    margin: auto;
+}
+
+.content {
+    width:600px;
+    float:left;
+}
