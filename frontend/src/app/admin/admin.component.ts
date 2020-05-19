@@ -6,6 +6,7 @@ import { Turn } from '../data-interfaces/turn';
 import { Page } from '../data-interfaces/page';
 import { Round } from '../data-interfaces/round';
 import { onErrorResumeNext } from 'rxjs';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -18,12 +19,50 @@ export class AdminComponent implements OnInit {
   turns: Turn[] = [];
   rounds: Round[][] = [];
 
+  content: string = '';
+  artistId: number = -1;
+  
+  newPageContent: string = '';
+  newPageArtistId: number = 1;
+  newPageDate: string = '';
+
+  updatePageContent: string = '';
+  updatePageArtistId: number = 1;
+  updatePageDate: string = '';
+
   constructor(private adminService: AdminService, private dataService: DataService) { }
 
   changeArtistStatus(artistId: number, status: string) {
     this.adminService.changeArtistStatus(status, artistId,
       () => this.dataService.getArtists(res => this.updateArtists(res), err => this.error(err)),
       (err) => this.error(err));
+  }
+
+  editPage() {
+    
+  }
+
+  addNewPage() {
+    if (this.newPageContent !== '' && this.newPageDate !== '') {
+      try {
+        var date = new Date(this.newPageDate);
+        var page: Page = {id: -1, content: this.newPageContent, username: '', date: date};
+
+        this.adminService.postNewPage(page, this.newPageArtistId,
+          () => this.dataService.getPages(res => this.updatePages(res), err => this.error(err)),
+          err => this.error(err)
+          );
+
+      } catch (error) {
+        this.error(error);
+      }
+    } else {
+      this.error(new Error("Missing inputs"));
+    }
+
+    this.newPageContent = '';
+    this.newPageArtistId = 1;
+    this.newPageDate = '';
   }
 
   updatePages(newPages: Page[]) {

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FrontpageComponent } from './main/frontpage/frontpage.component';
@@ -37,7 +38,8 @@ import { AdminService } from './admin.service';
     HttpClientModule,
     HomepageRoutingModule,
     MainRoutingModule,
-    ComicRoutingModule
+    ComicRoutingModule,
+    FormsModule
   ],
   providers: [DataService, AdminService],
   bootstrap: [AppComponent]

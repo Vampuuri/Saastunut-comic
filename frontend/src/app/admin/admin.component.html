@@ -32,18 +32,18 @@
         <td>{{page.username}}</td>
         <td><a href="{{page.content}}" target=">blank">{{page.content}}</a></td>
         <td>{{page.date | date:'dd.MM.-yy'}}</td>
-        <td><button>Muokkaa</button></td>
+        <td><button (click)="editPage()">Muokkaa</button></td>
     </tr>
     <tr>
         <td></td>
         <td>
-            <select>
-                <option *ngFor="let artist of artists" value="artist.id">{{artist.username}}</option>
+            <select [(ngModel)]="newPageArtistId">
+                <option *ngFor="let artist of artists" value={{artist.id}}>{{artist.username}}</option>
             </select>
         </td>
-        <td><input></td>
-        <td><input></td>
-        <td><button>Lisää sivu</button></td>
+        <td><input [(ngModel)]="newPageContent"></td>
+        <td><input [(ngModel)]="newPageDate" type="date"></td>
+        <td><button (click)="addNewPage()">Lisää sivu</button></td>
     </tr>
 </table>
 
@@ -56,7 +56,7 @@
         <ng-container *ngFor="let round of roundArray">
             <br/><span [class.skipped]="round.skipped" [class.active]="round.active">{{round.username}}</span>
             <span *ngIf="round.active"> - Deadline {{round.date | date:'dd.MM.-yy'}}</span>
-            <span *ngIf="!round.skipped && round.date"> - {{round.date | date:'dd.MM.-yy'}}</span>
+            <span *ngIf="!round.skipped && round.date && !round.active"> - {{round.date | date:'dd.MM.-yy'}}</span>
         </ng-container>
     </p>
 </ng-container>
